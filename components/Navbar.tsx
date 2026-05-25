@@ -52,17 +52,16 @@ export function Navbar({ locale, dict }: Props) {
           : "bg-transparent"
       }`}
     >
-      <nav className="container-page flex h-16 items-center justify-between">
-        <Link href={`/${locale}`} className="group flex items-center gap-2.5" aria-label={siteConfig.name}>
+      <nav className="container-page flex h-20 items-center justify-between">
+        <Link href={`/${locale}`} className="group flex items-center" aria-label={siteConfig.name}>
           <Image
             src="/logo.png"
             alt={siteConfig.name}
-            width={48}
-            height={40}
+            width={96}
+            height={80}
             priority
-            className="h-10 w-auto transition-transform group-hover:scale-105"
+            className="h-16 w-auto transition-transform group-hover:scale-105"
           />
-          <span className="font-display text-xl tracking-tight text-ink-900">{siteConfig.name}</span>
         </Link>
 
         <ul className="hidden items-center gap-0.5 lg:flex">

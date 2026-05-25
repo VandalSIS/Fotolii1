@@ -14,15 +14,14 @@ export function Footer({ locale, dict }: Props) {
     <footer className="mt-24 bg-espresso text-cream-50">
       <div className="container-page grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center">
             <Image
               src="/logo.png"
               alt={siteConfig.name}
-              width={54}
-              height={45}
-              className="h-11 w-auto"
+              width={120}
+              height={101}
+              className="h-20 w-auto"
             />
-            <span className="font-display text-xl text-cream-50">{siteConfig.name}</span>
           </div>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-cream-50/70">
             {dict.footer.tagline}

@@ -202,7 +202,7 @@ export default async function LocaleLayout({
     <html lang={loc === "ru" ? "ru-MD" : "ro-MD"} className={`${inter.variable} ${fraunces.variable}`}>
       <body className="min-h-screen bg-cream-50 text-ink-900 antialiased">
         <Navbar locale={loc} dict={dict} />
-        <main className="pt-16">{children}</main>
+        <main className="pt-20">{children}</main>
         <Footer locale={loc} dict={dict} />
         <StickyContact />
         <Script
