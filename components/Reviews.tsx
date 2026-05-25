@@ -2,12 +2,11 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "./AnimatedSection";
-import { reviewsSeed, type Dictionary } from "@/lib/i18n";
+import { reviewsSeed } from "@/lib/i18n";
 import type { Locale } from "@/lib/site";
 
 interface Props {
   locale: Locale;
-  dict: Dictionary;
   variant?: "card" | "marquee";
 }
 
@@ -23,7 +22,7 @@ function Stars({ count }: { count: number }) {
   );
 }
 
-export function Reviews({ locale, dict, variant = "card" }: Props) {
+export function Reviews({ locale, variant = "card" }: Props) {
   if (variant === "marquee") {
     const items = [...reviewsSeed, ...reviewsSeed];
     return (

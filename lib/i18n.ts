@@ -359,7 +359,7 @@ export const dictionaries = {
   },
 } as const;
 
-export type Dictionary = (typeof dictionaries)["ro"];
+export type Dictionary = (typeof dictionaries)[keyof typeof dictionaries];
 
 export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale];

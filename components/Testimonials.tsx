@@ -19,7 +19,7 @@ export function Testimonials({ locale, dict }: Props) {
           {dict.home.testimonialsTitle}
         </h2>
       </div>
-      <Reviews locale={locale} dict={dict} variant="marquee" />
+      <Reviews locale={locale} variant="marquee" />
     </section>
   );
 }

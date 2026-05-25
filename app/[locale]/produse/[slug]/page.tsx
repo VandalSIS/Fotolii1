@@ -203,7 +203,7 @@ export default async function ProductPage({
             {dict.product.reviewsLeave}
           </a>
         </div>
-        <Reviews locale={locale} dict={dict} />
+        <Reviews locale={locale} />
       </section>
 
       {related.length > 0 && (
