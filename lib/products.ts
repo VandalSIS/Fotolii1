@@ -402,8 +402,8 @@ export const products: Product[] = [
     brand: "Leercon",
     category: "massage",
     price: 45000,
-    available: false,
-    image: "/products/leercon-988t.png",
+    available: true,
+    image: "/products/leercon-988t.jpg",
     shortDescription: {
       ro: "Fotoliu gri elegant. Șină SL + 6 tehnici de masaj, perne de aer pe tot corpul, Zero Gravity.",
       ru: "Элегантное серое кресло. SL + 6 техник массажа, воздушные подушки, Zero Gravity.",
