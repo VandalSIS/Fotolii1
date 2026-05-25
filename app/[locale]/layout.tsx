@@ -95,7 +95,7 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: `${siteConfig.domain}/${loc}/opengraph-image`,
+          url: `${siteConfig.domain}/og-image.png`,
           width: 1200,
           height: 630,
           alt: title,
@@ -106,7 +106,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [`${siteConfig.domain}/${loc}/opengraph-image`],
+      images: [`${siteConfig.domain}/og-image.png`],
     },
     robots: {
       index: true,
@@ -152,8 +152,8 @@ export default async function LocaleLayout({
     url: `${siteConfig.domain}/${loc}`,
     telephone: siteConfig.phone,
     email: siteConfig.email,
-    image: `${siteConfig.domain}/${loc}/opengraph-image`,
-    logo: `${siteConfig.domain}/favicon.svg`,
+    image: `${siteConfig.domain}/og-image.png`,
+    logo: `${siteConfig.domain}/logo.png`,
     priceRange: "$$",
     currenciesAccepted: "MDL",
     paymentAccepted: "Cash, Credit Card, Bank Transfer",

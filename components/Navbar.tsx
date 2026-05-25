@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -52,10 +53,15 @@ export function Navbar({ locale, dict }: Props) {
       }`}
     >
       <nav className="container-page flex h-16 items-center justify-between">
-        <Link href={`/${locale}`} className="group flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-300 to-brand-500 font-display text-base font-semibold text-ink-900 shadow-md shadow-brand-500/30 ring-1 ring-brand-300/40 transition-transform group-hover:scale-105">
-            M
-          </span>
+        <Link href={`/${locale}`} className="group flex items-center gap-2.5" aria-label={siteConfig.name}>
+          <Image
+            src="/logo.png"
+            alt={siteConfig.name}
+            width={48}
+            height={40}
+            priority
+            className="h-10 w-auto transition-transform group-hover:scale-105"
+          />
           <span className="font-display text-xl tracking-tight text-ink-900">{siteConfig.name}</span>
         </Link>
 

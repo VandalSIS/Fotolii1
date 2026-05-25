@@ -30,7 +30,7 @@ export async function generateMetadata({
       title: dict.about.title,
       description: dict.about.lead,
       url: `${siteConfig.domain}/${locale}/despre`,
-      images: [{ url: `${siteConfig.domain}/${locale}/opengraph-image`, width: 1200, height: 630, alt: dict.about.title }],
+      images: [{ url: `${siteConfig.domain}/og-image.png`, width: 1200, height: 630, alt: dict.about.title }],
     },
     twitter: {
       card: "summary_large_image",

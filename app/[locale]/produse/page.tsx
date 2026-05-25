@@ -28,7 +28,7 @@ export async function generateMetadata({
       title: dict.products.title,
       description: dict.products.subtitle,
       url: `${siteConfig.domain}/${locale}/produse`,
-      images: [{ url: `${siteConfig.domain}/${locale}/opengraph-image`, width: 1200, height: 630, alt: dict.products.title }],
+      images: [{ url: `${siteConfig.domain}/og-image.png`, width: 1200, height: 630, alt: dict.products.title }],
     },
     twitter: {
       card: "summary_large_image",

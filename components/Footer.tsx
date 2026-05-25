@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Dictionary } from "@/lib/i18n";
 import { siteConfig, type Locale } from "@/lib/site";
 
@@ -14,9 +15,13 @@ export function Footer({ locale, dict }: Props) {
       <div className="container-page grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-300 to-brand-500 font-display text-lg font-semibold text-ink-900 shadow-md shadow-brand-500/20">
-              M
-            </span>
+            <Image
+              src="/logo.png"
+              alt={siteConfig.name}
+              width={54}
+              height={45}
+              className="h-11 w-auto"
+            />
             <span className="font-display text-xl text-cream-50">{siteConfig.name}</span>
           </div>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-cream-50/70">
