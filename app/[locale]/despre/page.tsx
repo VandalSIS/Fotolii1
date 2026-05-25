@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Script from "next/script";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ClientStagger } from "@/components/ClientStagger";
 import { CtaBlock } from "@/components/CtaBlock";
@@ -18,13 +19,23 @@ export async function generateMetadata({
     title: dict.about.title,
     description: dict.about.lead,
     alternates: {
-      canonical: `/${locale}/despre`,
-      languages: { "ro-MD": "/ro/despre", "ru-MD": "/ru/despre" },
+      canonical: `${siteConfig.domain}/${locale}/despre`,
+      languages: {
+        "ro-MD": `${siteConfig.domain}/ro/despre`,
+        "ru-MD": `${siteConfig.domain}/ru/despre`,
+        "x-default": `${siteConfig.domain}/ro/despre`,
+      },
     },
     openGraph: {
       title: dict.about.title,
       description: dict.about.lead,
       url: `${siteConfig.domain}/${locale}/despre`,
+      images: [{ url: `${siteConfig.domain}/${locale}/opengraph-image`, width: 1200, height: 630, alt: dict.about.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.about.title,
+      description: dict.about.lead,
     },
   };
 }
@@ -142,6 +153,22 @@ export default async function AboutPage({
       </section>
 
       <CtaBlock locale={locale} dict={dict} />
+
+      <Script
+        id="ld-breadcrumb-about"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: dict.nav.home, item: `${siteConfig.domain}/${locale}` },
+              { "@type": "ListItem", position: 2, name: dict.about.title, item: `${siteConfig.domain}/${locale}/despre` },
+            ],
+          }),
+        }}
+      />
     </>
   );
 }

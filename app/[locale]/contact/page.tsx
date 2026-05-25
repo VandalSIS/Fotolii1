@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { BookTestForm } from "@/components/BookTestForm";
 import { getDictionary } from "@/lib/i18n";
@@ -15,13 +16,23 @@ export async function generateMetadata({
     title: dict.bookTest.title,
     description: dict.bookTest.lead,
     alternates: {
-      canonical: `/${locale}/contact`,
-      languages: { "ro-MD": "/ro/contact", "ru-MD": "/ru/contact" },
+      canonical: `${siteConfig.domain}/${locale}/contact`,
+      languages: {
+        "ro-MD": `${siteConfig.domain}/ro/contact`,
+        "ru-MD": `${siteConfig.domain}/ru/contact`,
+        "x-default": `${siteConfig.domain}/ro/contact`,
+      },
     },
     openGraph: {
       title: dict.bookTest.title,
       description: dict.bookTest.lead,
       url: `${siteConfig.domain}/${locale}/contact`,
+      images: [{ url: `${siteConfig.domain}/${locale}/opengraph-image`, width: 1200, height: 630, alt: dict.bookTest.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.bookTest.title,
+      description: dict.bookTest.lead,
     },
   };
 }
@@ -124,6 +135,22 @@ export default async function ContactPage({
           </div>
         </AnimatedSection>
       </div>
+
+      <Script
+        id="ld-breadcrumb-contact"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: dict.nav.home, item: `${siteConfig.domain}/${locale}` },
+              { "@type": "ListItem", position: 2, name: dict.bookTest.title, item: `${siteConfig.domain}/${locale}/contact` },
+            ],
+          }),
+        }}
+      />
     </section>
   );
 }

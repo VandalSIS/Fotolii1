@@ -78,11 +78,11 @@ export async function generateMetadata({
     publisher: siteConfig.name,
     formatDetection: { telephone: true, email: true, address: true },
     alternates: {
-      canonical: `/${loc}`,
+      canonical: `${siteConfig.domain}/${loc}`,
       languages: {
-        "ro-MD": "/ro",
-        "ru-MD": "/ru",
-        "x-default": "/ro",
+        "ro-MD": `${siteConfig.domain}/ro`,
+        "ru-MD": `${siteConfig.domain}/ru`,
+        "x-default": `${siteConfig.domain}/ro`,
       },
     },
     openGraph: {
@@ -95,10 +95,10 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: "/og-image.png",
+          url: `${siteConfig.domain}/${loc}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: siteConfig.name,
+          alt: title,
         },
       ],
     },
@@ -106,7 +106,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-image.png"],
+      images: [`${siteConfig.domain}/${loc}/opengraph-image`],
     },
     robots: {
       index: true,
@@ -124,6 +124,9 @@ export async function generateMetadata({
       apple: "/favicon.svg",
     },
     manifest: "/manifest.webmanifest",
+    ...(siteConfig.googleVerification
+      ? { verification: { google: siteConfig.googleVerification } }
+      : {}),
   };
 }
 
@@ -144,12 +147,16 @@ export default async function LocaleLayout({
     "@type": "LocalBusiness",
     "@id": `${siteConfig.domain}/#localbusiness`,
     name: siteConfig.name,
+    legalName: siteConfig.legalName,
     description: siteConfig.description[loc],
     url: `${siteConfig.domain}/${loc}`,
     telephone: siteConfig.phone,
     email: siteConfig.email,
-    image: `${siteConfig.domain}/og-image.png`,
-    priceRange: "$$ - $$$",
+    image: `${siteConfig.domain}/${loc}/opengraph-image`,
+    logo: `${siteConfig.domain}/favicon.svg`,
+    priceRange: "$$",
+    currenciesAccepted: "MDL",
+    paymentAccepted: "Cash, Credit Card, Bank Transfer",
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,
@@ -158,8 +165,37 @@ export default async function LocaleLayout({
       postalCode: siteConfig.address.postalCode,
       addressCountry: siteConfig.address.country,
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 47.0245,
+      longitude: 28.8322,
+    },
     areaServed: { "@type": "Country", name: "Moldova" },
     sameAs: [siteConfig.social.facebook].filter(Boolean),
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.domain}/#website`,
+    name: siteConfig.name,
+    url: siteConfig.domain,
+    inLanguage: [
+      { "@type": "Language", name: "Romanian", alternateName: "ro" },
+      { "@type": "Language", name: "Russian", alternateName: "ru" },
+    ],
+    publisher: { "@id": `${siteConfig.domain}/#localbusiness` },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${siteConfig.domain}/${loc}/produse?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (
@@ -174,6 +210,12 @@ export default async function LocaleLayout({
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
+        <Script
+          id="ld-website"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </body>
     </html>

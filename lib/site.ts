@@ -2,6 +2,7 @@ export const siteConfig = {
   name: "MasajGO",
   legalName: "MasajGO",
   domain: "https://masajgo.md",
+  googleVerification: "", // Set this from Google Search Console
   description: {
     ro: "Fotolii de masaj premium Leercon și mobilier profesional pentru barber shop în Chișinău. Livrare în toată Moldova. Garanție și consultanță gratuită.",
     ru: "Премиальные массажные кресла Leercon и профессиональная мебель для барбершопа в Кишинёве. Доставка по всей Молдове. Гарантия и бесплатная консультация.",

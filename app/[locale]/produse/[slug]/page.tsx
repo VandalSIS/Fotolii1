@@ -29,28 +29,31 @@ export async function generateMetadata({
   if (!product) return {};
   const dict = getDictionary(locale);
   const title = `${product.name} · ${product.price ? formatPrice(product.price, locale) : dict.products.askPrice}`;
+  const productUrl = `${siteConfig.domain}/${locale}/produse/${product.slug}`;
+  const productImage = `${siteConfig.domain}${product.image}`;
   return {
     title,
     description: product.shortDescription[locale],
     alternates: {
-      canonical: `/${locale}/produse/${product.slug}`,
+      canonical: productUrl,
       languages: {
-        "ro-MD": `/ro/produse/${product.slug}`,
-        "ru-MD": `/ru/produse/${product.slug}`,
+        "ro-MD": `${siteConfig.domain}/ro/produse/${product.slug}`,
+        "ru-MD": `${siteConfig.domain}/ru/produse/${product.slug}`,
+        "x-default": `${siteConfig.domain}/ro/produse/${product.slug}`,
       },
     },
     openGraph: {
       type: "website",
       title: product.name,
       description: product.shortDescription[locale],
-      url: `${siteConfig.domain}/${locale}/produse/${product.slug}`,
-      images: [{ url: product.image, width: 1024, height: 1280, alt: product.name }],
+      url: productUrl,
+      images: [{ url: productImage, width: 1024, height: 1280, alt: product.name }],
     },
     twitter: {
       card: "summary_large_image",
       title: product.name,
       description: product.shortDescription[locale],
-      images: [product.image],
+      images: [productImage],
     },
   };
 }
