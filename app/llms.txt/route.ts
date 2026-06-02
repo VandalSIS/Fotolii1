@@ -17,8 +17,13 @@ export function GET() {
   lines.push("## Contact");
   lines.push(`- Phone: ${siteConfig.phone}`);
   lines.push(`- Email: ${siteConfig.email}`);
-  lines.push(`- Address: ${siteConfig.address.street}, ${siteConfig.address.locality}, Moldova`);
+  lines.push(
+    `- Address: ${siteConfig.address.street}, ${siteConfig.address.locality}, ${siteConfig.address.postalCode}, Moldova`,
+  );
   lines.push(`- Facebook: ${siteConfig.social.facebook}`);
+  if (siteConfig.social.instagram) {
+    lines.push(`- Instagram: ${siteConfig.social.instagram} (${siteConfig.social.instagramHandle})`);
+  }
   lines.push("");
   lines.push("## Pages");
   lines.push(`- [Home (RO)](${siteConfig.domain}/ro)`);

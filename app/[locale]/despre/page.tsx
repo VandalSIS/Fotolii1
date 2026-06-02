@@ -52,6 +52,7 @@ const warrantyIcons = [
   <svg key="1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4Z" /><path d="M9 12l2 2 4-4" /></svg>,
   <svg key="2" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>,
   <svg key="3" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z" /></svg>,
+  <svg key="4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>,
 ];
 
 export default async function AboutPage({
@@ -139,16 +140,49 @@ export default async function AboutPage({
           </h2>
         </AnimatedSection>
 
-        <ClientStagger className="grid gap-px overflow-hidden rounded-3xl border border-ink-900/10 bg-ink-900/10 md:grid-cols-2">
-          {dict.warranty.sections.map((s, i) => (
-            <article key={i} className="group bg-cream-50 p-7 transition hover:bg-white">
-              <div className="mb-4 inline-grid h-12 w-12 place-items-center rounded-2xl border border-brand-400/30 bg-brand-50 text-brand-700 transition group-hover:scale-105 group-hover:bg-brand-500 group-hover:text-cream-50">
-                {warrantyIcons[i % warrantyIcons.length]}
-              </div>
-              <h3 className="font-display text-xl text-ink-900">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-700/85">{s.desc}</p>
-            </article>
-          ))}
+        <ClientStagger className="overflow-hidden rounded-3xl border border-ink-900/10 bg-ink-900/10">
+          <div className="grid gap-px md:grid-cols-2">
+            {dict.warranty.sections
+              .filter((s) => !("maps" in s && s.maps))
+              .map((s, i) => (
+                <article key={s.title} className="group bg-cream-50 p-7 transition hover:bg-white">
+                  <div className="mb-4 inline-grid h-12 w-12 place-items-center rounded-2xl border border-brand-400/30 bg-brand-50 text-brand-700 transition group-hover:scale-105 group-hover:bg-brand-500 group-hover:text-cream-50">
+                    {warrantyIcons[i % warrantyIcons.length]}
+                  </div>
+                  <h3 className="font-display text-xl text-ink-900">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-700/85">{s.desc}</p>
+                </article>
+              ))}
+          </div>
+
+          {dict.warranty.sections
+            .filter((s) => "maps" in s && s.maps)
+            .map((s) => {
+              const addressLine = `${siteConfig.address.street}, ${siteConfig.address.locality}, ${siteConfig.address.postalCode}, Moldova`;
+              return (
+                <article
+                  key={s.title}
+                  className="border-t border-ink-900/10 bg-cream-50 px-7 py-8 text-center transition hover:bg-white"
+                >
+                  <div className="mx-auto mb-4 inline-grid h-12 w-12 place-items-center rounded-2xl border border-brand-400/30 bg-brand-50 text-brand-700">
+                    {warrantyIcons[4]}
+                  </div>
+                  <h3 className="font-display text-xl text-ink-900">{s.title}</h3>
+                  <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-700/85">{addressLine}</p>
+                  <a
+                    href={siteConfig.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center justify-center gap-2 text-sm font-medium text-brand-700 transition hover:text-brand-800"
+                  >
+                    {locale === "ru" ? "Открыть в Google Maps" : "Deschide în Google Maps"}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M13 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </article>
+              );
+            })}
         </ClientStagger>
       </section>
 

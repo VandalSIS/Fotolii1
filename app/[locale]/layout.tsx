@@ -153,7 +153,7 @@ export default async function LocaleLayout({
     telephone: siteConfig.phone,
     email: siteConfig.email,
     image: `${siteConfig.domain}/og-image.png`,
-    logo: `${siteConfig.domain}/logo.png`,
+    logo: `${siteConfig.domain}/logo-v2.png`,
     priceRange: "$$",
     currenciesAccepted: "MDL",
     paymentAccepted: "Cash, Credit Card, Bank Transfer",
@@ -171,7 +171,7 @@ export default async function LocaleLayout({
       longitude: 28.8322,
     },
     areaServed: { "@type": "Country", name: "Moldova" },
-    sameAs: [siteConfig.social.facebook].filter(Boolean),
+    sameAs: [siteConfig.social.facebook, siteConfig.social.instagram].filter(Boolean),
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],

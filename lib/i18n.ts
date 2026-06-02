@@ -56,7 +56,7 @@ export const dictionaries = {
       faq: [
         { q: "Livrați în toată Moldova?", a: "Da, livrăm în toate orașele și satele din Republica Moldova. Livrarea în Chișinău este gratuită; pentru restul țării confirmăm costul la comandă." },
         { q: "Pot achita în rate?", a: "Da, oferim posibilitate de plată în rate până la 12 luni. Pe fiecare pagină de produs ai un calculator unde vezi suma lunară aproximativă." },
-        { q: "Ce garanție au produsele?", a: "Toate fotoliile Leercon vin cu garanție oficială de 24 de luni. Pentru mobilierul barber garanția este de 12 luni." },
+        { q: "Ce garanție au produsele?", a: "Toate fotoliile Leercon vin cu garanție oficială de 3 ani. Pentru mobilierul barber garanția este de 12 luni." },
         { q: "Pot încerca fotoliul înainte de cumpărare?", a: "Absolut. Programează un test gratuit și vino să încerci fotoliul live. Te ajutăm să alegi modelul potrivit." },
         { q: "Ce înseamnă „Zero Gravity\"?", a: "Funcția Zero Gravity înclină fotoliul într-o poziție în care picioarele sunt mai sus decât inima, eliminând presiunea de pe coloana vertebrală. Senzație de plutire." },
         { q: "Cât durează livrarea?", a: "1-3 zile lucrătoare în Chișinău și împrejurimi, 3-5 zile în restul țării." },
@@ -93,7 +93,7 @@ export const dictionaries = {
       callForOrder: "Sună pentru comandă",
       whatsappOrder: "Comandă pe WhatsApp",
       delivery: "Livrare în toată Moldova",
-      warranty: "Garanție oficială 24 luni",
+      warranty: "Garanție oficială 3 ani",
       consultation: "Consultanță gratuită",
       relatedTitle: "Produse similare",
       askDemo: "Programează un test gratuit",
@@ -119,10 +119,25 @@ export const dictionaries = {
       title: "Garanție",
       lead: "Garantăm calitatea fiecărui produs pe care îl vindem.",
       sections: [
-        { title: "24 de luni pentru fotoliile Leercon", desc: "Toate fotoliile de masaj vin cu garanție oficială Leercon de 24 de luni. Acoperă defecte de producție și componente." },
-        { title: "12 luni pentru mobilier barber", desc: "Scaunele profesionale au garanție de 12 luni pentru construcție și mecanisme." },
-        { title: "Service rapid", desc: "Avem piese de schimb local și tehnicieni instruiți. Dacă apare o problemă — o rezolvăm rapid." },
-        { title: "Suport tehnic", desc: "Suntem disponibili la telefon și WhatsApp pentru orice întrebare tehnică sau de utilizare." },
+        { title: "3 ani pentru fotoliile Leercon", desc: "Toate fotoliile de masaj vin cu garanție oficială Leercon de 3 ani. Acoperă defecte de producție și componente." },
+        {
+          title: "12 luni pentru mobilier barber",
+          desc: "Scaunele profesionale au garanție de 12 luni pentru construcție și mecanisme.",
+        },
+        {
+          title: "De la 12 luni în plus",
+          desc: "+ 10 ani asistență post-procurare (în caz că apar careva defecțiuni mecanice sau tehnice) achiți doar piesa.",
+        },
+        {
+          title: "Service rapid & suport",
+          desc: "Avem piese de schimb local și tehnicieni instruiți. Suntem disponibili la telefon și WhatsApp pentru orice întrebare tehnică.",
+        },
+        {
+          title: "Adresă",
+          desc: "str. Albisoara 38A, Chișinău, Moldova",
+          centered: true,
+          maps: true,
+        },
       ],
     },
     bookTest: {
@@ -234,7 +249,7 @@ export const dictionaries = {
       faq: [
         { q: "Доставляете по всей Молдове?", a: "Да, доставляем во все города и сёла Республики Молдова. По Кишинёву доставка бесплатная, для остальной страны стоимость подтверждается при заказе." },
         { q: "Можно оплатить в рассрочку?", a: "Да, предлагаем рассрочку до 12 месяцев. На каждой странице товара есть калькулятор, где видно примерный ежемесячный платёж." },
-        { q: "Какая гарантия на товары?", a: "На все кресла Leercon — официальная гарантия 24 месяца. На мебель для барбершопа — 12 месяцев." },
+        { q: "Какая гарантия на товары?", a: "На все кресла Leercon — официальная гарантия 3 года. На мебель для барбершопа — 12 месяцев." },
         { q: "Можно попробовать до покупки?", a: "Конечно. Запишитесь на бесплатный тест и приходите попробовать вживую. Поможем выбрать модель." },
         { q: "Что такое „Zero Gravity\"?", a: "Функция Zero Gravity наклоняет кресло так, что ноги оказываются выше сердца, снимая нагрузку с позвоночника. Ощущение невесомости." },
         { q: "Сколько занимает доставка?", a: "1-3 рабочих дня по Кишинёву и окрестностям, 3-5 дней по остальной стране." },
@@ -271,7 +286,7 @@ export const dictionaries = {
       callForOrder: "Позвонить для заказа",
       whatsappOrder: "Заказ в WhatsApp",
       delivery: "Доставка по всей Молдове",
-      warranty: "Официальная гарантия 24 мес.",
+      warranty: "Официальная гарантия 3 года",
       consultation: "Бесплатная консультация",
       relatedTitle: "Похожие товары",
       askDemo: "Записаться на бесплатный тест",
@@ -297,10 +312,25 @@ export const dictionaries = {
       title: "Гарантия",
       lead: "Гарантируем качество каждого продаваемого товара.",
       sections: [
-        { title: "24 месяца на кресла Leercon", desc: "Все массажные кресла — с официальной гарантией Leercon на 24 месяца. Покрывает производственные дефекты и компоненты." },
-        { title: "12 месяцев на мебель для барбершопа", desc: "Профессиональные кресла — гарантия 12 месяцев на конструкцию и механизмы." },
-        { title: "Быстрый сервис", desc: "У нас есть запчасти на месте и обученные техники. Если возникает проблема — решаем быстро." },
-        { title: "Техподдержка", desc: "Доступны по телефону и в WhatsApp по любым техническим вопросам." },
+        { title: "3 года на кресла Leercon", desc: "Все массажные кресла — с официальной гарантией Leercon на 3 года. Покрывает производственные дефекты и компоненты." },
+        {
+          title: "12 месяцев на мебель для барбершопа",
+          desc: "Профессиональные кресла — гарантия 12 месяцев на конструкцию и механизмы.",
+        },
+        {
+          title: "После 12 месяцев",
+          desc: "+ 10 лет послегарантийной поддержки (при механических или технических неисправностях) — оплачиваете только деталь.",
+        },
+        {
+          title: "Сервис и поддержка",
+          desc: "Запчасти на месте и обученные техники. Доступны по телефону и в WhatsApp.",
+        },
+        {
+          title: "Адрес",
+          desc: "ул. Albisoara 38A, Кишинёв, Молдова",
+          centered: true,
+          maps: true,
+        },
       ],
     },
     bookTest: {

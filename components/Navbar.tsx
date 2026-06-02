@@ -55,9 +55,9 @@ export function Navbar({ locale, dict }: Props) {
       <nav className="container-page flex h-20 items-center justify-between">
         <Link href={`/${locale}`} className="group flex items-center" aria-label={siteConfig.name}>
           <Image
-            src="/logo.png"
+            src="/logo-v2.png"
             alt={siteConfig.name}
-            width={96}
+            width={107}
             height={80}
             priority
             className="h-16 w-auto transition-transform group-hover:scale-105"
