@@ -101,6 +101,9 @@ export default async function ContactPage({
               {siteConfig.address.locality}, {siteConfig.address.postalCode}<br />
               Moldova
             </p>
+            <p className="mt-1 text-xs uppercase tracking-[0.18em] text-brand-700">
+              {siteConfig.address.note[locale]}
+            </p>
             <a
               href={siteConfig.mapsUrl}
               target="_blank"

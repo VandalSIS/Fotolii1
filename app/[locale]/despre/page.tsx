@@ -169,6 +169,9 @@ export default async function AboutPage({
                   </div>
                   <h3 className="font-display text-xl text-ink-900">{s.title}</h3>
                   <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-700/85">{addressLine}</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.18em] text-brand-700">
+                    {siteConfig.address.note[locale]}
+                  </p>
                   <a
                     href={siteConfig.mapsUrl}
                     target="_blank"

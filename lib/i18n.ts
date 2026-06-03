@@ -134,7 +134,7 @@ export const dictionaries = {
         },
         {
           title: "Adresă",
-          desc: "str. Albisoara 38A, Chișinău, Moldova",
+          desc: "str. Bănulescu-Bodoni 61, bloc V, of. 112 (oficiu-showroom), Chișinău, Moldova",
           centered: true,
           maps: true,
         },
@@ -327,7 +327,7 @@ export const dictionaries = {
         },
         {
           title: "Адрес",
-          desc: "ул. Albisoara 38A, Кишинёв, Молдова",
+          desc: "ул. Бэнулеску-Бодони 61, корпус V, оф. 112 (офис-шоурум), Кишинёв, Молдова",
           centered: true,
           maps: true,
         },

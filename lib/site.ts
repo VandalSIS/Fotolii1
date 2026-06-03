@@ -13,14 +13,15 @@ export const siteConfig = {
   whatsappHref: "https://wa.me/37369595968",
   email: "masajgomoldova@gmail.com",
   address: {
-    street: "str. Albisoara 38A",
+    street: "str. Bănulescu-Bodoni 61, bloc V, of. 112",
     locality: "Chișinău",
     region: "Chișinău",
-    postalCode: "MD-2001",
+    postalCode: "MD-2005",
     country: "MD",
+    note: { ro: "oficiu · showroom", ru: "офис · шоурум" },
   },
   mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=str.+Albisoara+38A,+Chișinău,+Moldova",
+    "https://www.google.com/maps/search/?api=1&query=str.+B%C4%83nulescu-Bodoni+61,+Chi%C8%99in%C4%83u,+Moldova",
   social: {
     facebook: "https://www.facebook.com/share/18tQ1aKgyR/?mibextid=wwXIfr",
     instagram: "https://www.instagram.com/masajgo_chisinau/",
