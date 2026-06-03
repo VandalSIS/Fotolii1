@@ -53,6 +53,12 @@ export const dictionaries = {
       ],
       testimonialsTitle: "Ce spun clienții noștri",
       faqTitle: "Întrebări frecvente",
+      seoTitle: "Fotolii de masaj în Chișinău — totul într-un singur loc",
+      seoParagraphs: [
+        "MasajGO este destinația ta pentru fotolii de masaj premium în Republica Moldova. Importăm și livrăm modele Leercon de ultimă generație: fotolii de masaj 4D și 3D, cu șină SL pentru masaj complet al corpului, Zero Gravity, încălzire, masaj cu aer pe umeri, brațe, șezut și gambe, ecran tactil și control vocal.",
+        "Toate fotoliile de masaj sunt disponibile cu livrare gratuită în Chișinău și în toată Moldova, instalare la domiciliu și garanție oficială Leercon 3 ani. Achită integral sau în rate 0% până la 12 luni — calculezi suma lunară direct pe pagina fiecărui produs.",
+        "Pe lângă fotoliile de masaj, oferim și mobilier profesional pentru saloane barber: scaune barber ergonomice, scaune pentru spălarea capului și accesorii premium. Vino la showroom-ul nostru din Chișinău să încerci modelele live sau cere o consultanță gratuită — răspundem la WhatsApp în 24 de ore.",
+      ],
       faq: [
         { q: "Livrați în toată Moldova?", a: "Da, livrăm în toate orașele și satele din Republica Moldova. Livrarea în Chișinău este gratuită; pentru restul țării confirmăm costul la comandă." },
         { q: "Pot achita în rate?", a: "Da, oferim posibilitate de plată în rate până la 12 luni. Pe fiecare pagină de produs ai un calculator unde vezi suma lunară aproximativă." },
@@ -245,6 +251,12 @@ export const dictionaries = {
         { num: "04", title: "Доставка и установка", desc: "Привозим, собираем и обучаем пользоваться. Гарантия включена." },
       ],
       testimonialsTitle: "Что говорят наши клиенты",
+      seoTitle: "Массажные кресла в Кишинёве — всё в одном месте",
+      seoParagraphs: [
+        "MasajGO — ваш магазин премиальных массажных кресел в Республике Молдова. Привозим и доставляем модели Leercon последнего поколения: массажные кресла 4D и 3D, с рельсой SL для полного массажа тела, функцией Zero Gravity, подогревом, воздушным массажем плеч, рук, бёдер и икр, сенсорным экраном и голосовым управлением.",
+        "Все массажные кресла доступны с бесплатной доставкой по Кишинёву и всей Молдове, установкой на дому и официальной гарантией Leercon 3 года. Оплата сразу или в рассрочку 0% до 12 месяцев — ежемесячный платёж рассчитывается прямо на странице каждого товара.",
+        "Помимо массажных кресел, мы предлагаем профессиональную мебель для барбершопов: эргономичные кресла барбера, мойки для головы и премиальные аксессуары. Приходите в наш шоурум в Кишинёве, чтобы попробовать модели вживую, или закажите бесплатную консультацию — отвечаем в WhatsApp в течение 24 часов.",
+      ],
       faqTitle: "Частые вопросы",
       faq: [
         { q: "Доставляете по всей Молдове?", a: "Да, доставляем во все города и сёла Республики Молдова. По Кишинёву доставка бесплатная, для остальной страны стоимость подтверждается при заказе." },

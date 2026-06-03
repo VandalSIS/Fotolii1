@@ -15,9 +15,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const dict = getDictionary(locale);
+  const pageTitle =
+    locale === "ru"
+      ? "О MasajGO · Распространитель массажных кресел Leercon в Молдове"
+      : "Despre MasajGO · Distribuitor fotolii de masaj Leercon Moldova";
+  const pageDescription =
+    locale === "ru"
+      ? `${dict.about.lead} Официальный представитель Leercon в Молдове. Шоурум в Кишинёве, гарантия 3 года, доставка по всей стране.`
+      : `${dict.about.lead} Distribuitor oficial Leercon Moldova. Showroom în Chișinău, garanție 3 ani, livrare în toată țara.`;
   return {
-    title: dict.about.title,
-    description: dict.about.lead,
+    title: pageTitle,
+    description: pageDescription,
     alternates: {
       canonical: `${siteConfig.domain}/${locale}/despre`,
       languages: {
@@ -27,15 +35,15 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: dict.about.title,
-      description: dict.about.lead,
+      title: pageTitle,
+      description: pageDescription,
       url: `${siteConfig.domain}/${locale}/despre`,
-      images: [{ url: `${siteConfig.domain}/og-image.png`, width: 1200, height: 630, alt: dict.about.title }],
+      images: [{ url: `${siteConfig.domain}/og-image.png`, width: 1200, height: 630, alt: pageTitle }],
     },
     twitter: {
       card: "summary_large_image",
-      title: dict.about.title,
-      description: dict.about.lead,
+      title: pageTitle,
+      description: pageDescription,
     },
   };
 }

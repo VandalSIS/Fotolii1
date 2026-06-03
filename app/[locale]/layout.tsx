@@ -42,36 +42,72 @@ export async function generateMetadata({
   const description = siteConfig.description[loc];
   const title =
     loc === "ru"
-      ? `${siteConfig.name} — Массажные кресла Leercon в Кишинёве`
-      : `${siteConfig.name} — Fotolii de masaj Leercon Chișinău`;
+      ? "Массажные кресла Кишинёв · MasajGO Leercon Молдова"
+      : "Fotolii de masaj Chișinău · MasajGO Leercon Moldova";
 
   return {
     metadataBase: new URL(siteConfig.domain),
     title: {
       default: title,
-      template: `%s · ${siteConfig.name}`,
+      template: `%s · MasajGO — Fotolii de masaj Chișinău`,
     },
     description,
     applicationName: siteConfig.name,
+    category: loc === "ru" ? "Массажные кресла" : "Fotolii de masaj",
     keywords:
       loc === "ru"
         ? [
             "массажное кресло",
+            "массажные кресла",
+            "массажное кресло Кишинёв",
             "массажные кресла Кишинёв",
+            "массажные кресла Молдова",
+            "кресло массажер",
+            "купить массажное кресло",
+            "массажное кресло цена",
+            "массажное кресло Leercon",
             "Leercon Молдова",
+            "Leercon Кишинёв",
+            "массажное кресло 4D",
+            "массажное кресло 3D",
+            "Zero Gravity кресло",
+            "массажное кресло SL",
+            "массажное кресло в рассрочку",
+            "массаж дома",
+            "расслабляющее кресло",
+            "шоурум массажные кресла",
             "кресло барбер",
             "мебель для барбершопа",
-            "Zero Gravity кресло",
-            "4D массажное кресло",
+            "MasajGO",
           ]
         : [
+            "fotolii de masaj",
+            "fotolii masaj",
             "fotoliu de masaj",
+            "fotoliu masaj",
             "fotolii de masaj Chișinău",
+            "fotolii masaj Chișinău",
+            "fotolii de masaj Moldova",
+            "fotolii masaj Moldova",
+            "fotoliu de masaj preț",
+            "scaun de masaj",
+            "aparat de masaj",
+            "fotoliu masaj Leercon",
             "Leercon Moldova",
+            "Leercon Chișinău",
+            "fotoliu masaj 4D",
+            "fotoliu masaj 3D",
+            "fotoliu Zero Gravity",
+            "fotoliu masaj SL",
+            "fotoliu masaj rate",
+            "cumpără fotoliu masaj",
+            "masaj acasă",
+            "fotoliu relaxare",
+            "showroom fotolii masaj",
             "scaun barber",
             "mobilier barber",
-            "fotoliu masaj 4D",
-            "Zero Gravity",
+            "mobilă pentru frizerii",
+            "MasajGO",
           ],
     authors: [{ name: siteConfig.name }],
     creator: siteConfig.name,

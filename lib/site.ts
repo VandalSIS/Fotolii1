@@ -4,8 +4,8 @@ export const siteConfig = {
   domain: "https://masajgo.md",
   googleVerification: "", // Set this from Google Search Console
   description: {
-    ro: "Fotolii de masaj premium Leercon și mobilier profesional pentru barber shop în Chișinău. Livrare în toată Moldova. Garanție și consultanță gratuită.",
-    ru: "Премиальные массажные кресла Leercon и профессиональная мебель для барбершопа в Кишинёве. Доставка по всей Молдове. Гарантия и бесплатная консультация.",
+    ro: "Fotolii de masaj Leercon în Chișinău: modele 4D, Zero Gravity, șină SL. Livrare gratuită în toată Moldova, garanție 3 ani, rate 0% până la 12 luni. Showroom în Chișinău.",
+    ru: "Массажные кресла Leercon в Кишинёве: модели 4D, Zero Gravity, рельса SL. Бесплатная доставка по Молдове, гарантия 3 года, рассрочка 0% до 12 месяцев. Шоурум в Кишинёве.",
   },
   phone: "+373 69 595 968",
   phoneHref: "tel:+37369595968",

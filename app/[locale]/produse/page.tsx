@@ -12,10 +12,18 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = getDictionary(locale);
+  const pageTitle =
+    locale === "ru"
+      ? "Массажные кресла Leercon · Модели и цены в Кишинёве"
+      : "Fotolii de masaj Leercon · Modele și prețuri Chișinău";
+  const pageDescription =
+    locale === "ru"
+      ? "Все массажные кресла Leercon: модели 4D, Zero Gravity, SL. Цены в Кишинёве, рассрочка 0% до 12 месяцев, бесплатная доставка по Молдове."
+      : "Toate fotoliile de masaj Leercon: modele 4D, Zero Gravity, șină SL. Prețuri în Chișinău, rate 0% până la 12 luni, livrare gratuită în Moldova.";
+
   return {
-    title: dict.products.title,
-    description: dict.products.subtitle,
+    title: pageTitle,
+    description: pageDescription,
     alternates: {
       canonical: `${siteConfig.domain}/${locale}/produse`,
       languages: {
@@ -25,15 +33,15 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: dict.products.title,
-      description: dict.products.subtitle,
+      title: pageTitle,
+      description: pageDescription,
       url: `${siteConfig.domain}/${locale}/produse`,
-      images: [{ url: `${siteConfig.domain}/og-image.png`, width: 1200, height: 630, alt: dict.products.title }],
+      images: [{ url: `${siteConfig.domain}/og-image.png`, width: 1200, height: 630, alt: pageTitle }],
     },
     twitter: {
       card: "summary_large_image",
-      title: dict.products.title,
-      description: dict.products.subtitle,
+      title: pageTitle,
+      description: pageDescription,
     },
   };
 }

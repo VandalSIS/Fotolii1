@@ -12,9 +12,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const dict = getDictionary(locale);
+  const pageTitle =
+    locale === "ru"
+      ? "Записаться на тест массажного кресла · MasajGO Кишинёв"
+      : "Programează un test fotoliu de masaj · MasajGO Chișinău";
+  const pageDescription =
+    locale === "ru"
+      ? `${dict.bookTest.lead} Бесплатная демонстрация массажных кресел Leercon в шоуруме в Кишинёве.`
+      : `${dict.bookTest.lead} Demonstrație gratuită a fotoliilor de masaj Leercon în showroom-ul din Chișinău.`;
   return {
-    title: dict.bookTest.title,
-    description: dict.bookTest.lead,
+    title: pageTitle,
+    description: pageDescription,
     alternates: {
       canonical: `${siteConfig.domain}/${locale}/contact`,
       languages: {
@@ -24,15 +32,15 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: dict.bookTest.title,
-      description: dict.bookTest.lead,
+      title: pageTitle,
+      description: pageDescription,
       url: `${siteConfig.domain}/${locale}/contact`,
-      images: [{ url: `${siteConfig.domain}/og-image.png`, width: 1200, height: 630, alt: dict.bookTest.title }],
+      images: [{ url: `${siteConfig.domain}/og-image.png`, width: 1200, height: 630, alt: pageTitle }],
     },
     twitter: {
       card: "summary_large_image",
-      title: dict.bookTest.title,
-      description: dict.bookTest.lead,
+      title: pageTitle,
+      description: pageDescription,
     },
   };
 }

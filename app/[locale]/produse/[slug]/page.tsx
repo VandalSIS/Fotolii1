@@ -28,12 +28,27 @@ export async function generateMetadata({
   const product = getProduct(slug);
   if (!product) return {};
   const dict = getDictionary(locale);
-  const title = `${product.name} · ${product.price ? formatPrice(product.price, locale) : dict.products.askPrice}`;
+  const category =
+    product.category === "massage"
+      ? locale === "ru"
+        ? "Массажное кресло"
+        : "Fotoliu de masaj"
+      : locale === "ru"
+      ? "Кресло для барбершопа"
+      : "Scaun barber";
+  const cityTag = locale === "ru" ? "Кишинёв" : "Chișinău";
+  const priceTag = product.price ? formatPrice(product.price, locale) : dict.products.askPrice;
+  const title = `${product.name} — ${category} ${cityTag} · ${priceTag}`;
+  const usp =
+    locale === "ru"
+      ? "Бесплатная доставка по Молдове, гарантия, рассрочка 0%."
+      : "Livrare gratuită în Moldova, garanție și rate 0%.";
+  const description = `${product.shortDescription[locale]} ${usp}`;
   const productUrl = `${siteConfig.domain}/${locale}/produse/${product.slug}`;
   const productImage = `${siteConfig.domain}${product.image}`;
   return {
     title,
-    description: product.shortDescription[locale],
+    description,
     alternates: {
       canonical: productUrl,
       languages: {
@@ -44,15 +59,22 @@ export async function generateMetadata({
     },
     openGraph: {
       type: "website",
-      title: product.name,
-      description: product.shortDescription[locale],
+      title,
+      description,
       url: productUrl,
-      images: [{ url: productImage, width: 1024, height: 1280, alt: product.name }],
+      images: [
+        {
+          url: productImage,
+          width: 1024,
+          height: 1280,
+          alt: `${product.name} — ${category} ${cityTag}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: product.name,
-      description: product.shortDescription[locale],
+      title,
+      description,
       images: [productImage],
     },
   };

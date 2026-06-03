@@ -109,6 +109,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       <Testimonials locale={locale} dict={dict} />
 
+      <section className="container-page py-20">
+        <AnimatedSection className="mx-auto max-w-3xl text-center">
+          <span className="mb-4 inline-flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.2em] text-brand-700">
+            <span className="h-px w-8 bg-brand-400" />
+            MasajGO Moldova
+          </span>
+          <h2 className="font-display text-balance text-3xl font-normal leading-[1.1] tracking-tight text-ink-900 sm:text-4xl">
+            {dict.home.seoTitle}
+          </h2>
+          <div className="mt-8 space-y-5 text-left text-base leading-relaxed text-ink-700/85 sm:text-[17px]">
+            {dict.home.seoParagraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        </AnimatedSection>
+      </section>
+
       <Faq dict={dict} />
 
       <CtaBlock locale={locale} dict={dict} />
