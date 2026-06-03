@@ -11,7 +11,7 @@ export const siteConfig = {
   phoneHref: "tel:+37369595968",
   whatsapp: "+373 69 595 968",
   whatsappHref: "https://wa.me/37369595968",
-  email: "contact@masajgo.md",
+  email: "masajgomoldova@gmail.com",
   address: {
     street: "str. Albisoara 38A",
     locality: "Chișinău",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Dictionary } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
@@ -24,8 +25,10 @@ export function OrderModal({
   buttonClassName = "btn-primary",
   buttonContent,
 }: Props) {
+  const params = useParams<{ locale?: string }>();
+  const locale = params?.locale === "ru" ? "ru" : "ro";
   const [open, setOpen] = useState(false);
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   useEffect(() => {
     if (!open) return;
@@ -38,24 +41,40 @@ export function OrderModal({
     };
   }, [open]);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const name = String(fd.get("name") ?? "");
-    const address = String(fd.get("address") ?? "");
-    const phone = String(fd.get("phone") ?? "");
+    if (status === "sending") return;
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const data = Object.fromEntries(
+      ["name", "address", "phone"].map((k) => [k, String(fd.get(k) ?? "")]),
+    );
 
-    const text = `Comandă nouă de pe site:%0AProdus: ${productName}${
-      productPrice ? ` (${productPrice})` : ""
-    }%0A%0ANume: ${name}%0AAdresă: ${address}%0ATelefon: ${phone}`;
-    const subject = encodeURIComponent(`Comandă: ${productName}`);
     setStatus("sending");
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${text}`;
-    setStatus("sent");
-    setTimeout(() => {
-      setOpen(false);
-      setStatus("idle");
-    }, 1200);
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "order",
+          locale,
+          productName,
+          productPrice,
+          honeypot: String(fd.get("company") ?? ""),
+          data,
+        }),
+      });
+      const json = (await res.json().catch(() => ({}))) as { ok?: boolean };
+      if (!res.ok || !json.ok) throw new Error("send-failed");
+      setStatus("sent");
+      form.reset();
+      setTimeout(() => {
+        setOpen(false);
+        setStatus("idle");
+      }, 1800);
+    } catch {
+      setStatus("error");
+    }
   };
 
   const inputCls =
@@ -127,12 +146,28 @@ export function OrderModal({
                   <input name="phone" required type="tel" autoComplete="tel" placeholder="+373 ..." className={inputCls} />
                 </label>
 
-                <button type="submit" disabled={status !== "idle"} className="btn-primary mt-2 w-full">
-                  {status === "sent" ? dict.contact.sent : dict.product.orderSubmit}
+                <div aria-hidden className="hidden">
+                  <label>
+                    Company
+                    <input name="company" type="text" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </div>
+
+                <button type="submit" disabled={status === "sending"} className="btn-primary mt-2 w-full">
+                  {status === "sending"
+                    ? locale === "ru"
+                      ? "Отправка..."
+                      : "Se trimite..."
+                    : status === "sent"
+                    ? dict.contact.sent
+                    : dict.product.orderSubmit}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14M13 5l7 7-7 7" />
                   </svg>
                 </button>
+                {status === "error" && (
+                  <p className="text-center text-sm text-red-600">{dict.contact.error}</p>
+                )}
                 <a
                   href={siteConfig.whatsappHref}
                   target="_blank"
