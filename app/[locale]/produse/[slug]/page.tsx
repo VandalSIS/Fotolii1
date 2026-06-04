@@ -41,8 +41,8 @@ export async function generateMetadata({
   const title = `${product.name} — ${category} ${cityTag} · ${priceTag}`;
   const usp =
     locale === "ru"
-      ? "Бесплатная доставка по Молдове, гарантия, рассрочка 0%."
-      : "Livrare gratuită în Moldova, garanție și rate 0%.";
+      ? "Бесплатная доставка по Молдове, гарантия 3 года, рассрочка EasyCredit до 46 месяцев."
+      : "Livrare gratuită în Moldova, garanție 3 ani, rate EasyCredit până la 46 luni.";
   const description = `${product.shortDescription[locale]} ${usp}`;
   const productUrl = `${siteConfig.domain}/${locale}/produse/${product.slug}`;
   const productImage = `${siteConfig.domain}${product.image}`;

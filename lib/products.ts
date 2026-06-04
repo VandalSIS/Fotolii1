@@ -1,4 +1,4 @@
-import type { Locale } from "./site";
+import { siteConfig, type Locale } from "./site";
 
 export type Category = "massage" | "barber";
 
@@ -22,9 +22,29 @@ export interface Product {
   specs: { ro: string[]; ru: string[] };
 }
 
+/**
+ * Calculează rata lunară conform formulei EasyCredit „w.Shop" Standard:
+ *   P = ((r × PV) / (1 − (1 + r)^−n)) + PV × Com%
+ * unde:
+ *   r   = dobândă lunară (din tier)
+ *   Com = comision lunar (din tier)
+ *   PV  = suma împrumutată (preț produs)
+ *   n   = perioada în luni
+ */
 export function monthlyInstallment(price: number | null, months: number): number | null {
   if (price === null || months <= 0) return null;
-  return Math.ceil(price / months / 10) * 10;
+  const tier = siteConfig.credit.tiers.find((t) => months >= t.from && months <= t.to);
+  if (!tier) return null;
+  const { rate: r, commission: com } = tier;
+  const monthlyInterest = (r * price) / (1 - Math.pow(1 + r, -months));
+  const monthlyCommission = price * com;
+  return Math.round(monthlyInterest + monthlyCommission);
+}
+
+export function totalToPay(price: number | null, months: number): number | null {
+  const monthly = monthlyInstallment(price, months);
+  if (monthly === null) return null;
+  return monthly * months;
 }
 
 const desc4D = {
@@ -293,7 +313,7 @@ export const products: Product[] = [
     price: 33500,
     recommended: true,
     available: true,
-    image: "/products/leercon-m5-gray.png",
+    image: "/products/leercon-m5-gray.jpg",
     shortDescription: {
       ro: "Model recomandat. Șină SL, 18 programe automate, încărcare wireless, control vocal englez.",
       ru: "Рекомендуемая модель. SL-направляющая, 18 программ, беспроводная зарядка, голосовое управление.",

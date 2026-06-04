@@ -18,8 +18,8 @@ export async function generateMetadata({
       : "Fotolii de masaj Leercon · Modele și prețuri Chișinău";
   const pageDescription =
     locale === "ru"
-      ? "Все массажные кресла Leercon: модели 4D, Zero Gravity, SL. Цены в Кишинёве, рассрочка 0% до 12 месяцев, бесплатная доставка по Молдове."
-      : "Toate fotoliile de masaj Leercon: modele 4D, Zero Gravity, șină SL. Prețuri în Chișinău, rate 0% până la 12 luni, livrare gratuită în Moldova.";
+      ? "Все массажные кресла Leercon: модели 4D, Zero Gravity, SL. Цены в Кишинёве, рассрочка EasyCredit до 46 месяцев, бесплатная доставка по Молдове."
+      : "Toate fotoliile de masaj Leercon: modele 4D, Zero Gravity, șină SL. Prețuri în Chișinău, rate EasyCredit până la 46 luni, livrare gratuită în Moldova.";
 
   return {
     title: pageTitle,

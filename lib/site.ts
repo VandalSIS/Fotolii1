@@ -4,8 +4,8 @@ export const siteConfig = {
   domain: "https://masajgo.md",
   googleVerification: "", // Set this from Google Search Console
   description: {
-    ro: "Fotolii de masaj Leercon în Chișinău: modele 4D, Zero Gravity, șină SL. Livrare gratuită în toată Moldova, garanție 3 ani, rate 0% până la 12 luni. Showroom în Chișinău.",
-    ru: "Массажные кресла Leercon в Кишинёве: модели 4D, Zero Gravity, рельса SL. Бесплатная доставка по Молдове, гарантия 3 года, рассрочка 0% до 12 месяцев. Шоурум в Кишинёве.",
+    ro: "Fotolii de masaj Leercon în Chișinău: modele 4D, Zero Gravity, șină SL. Livrare gratuită în toată Moldova, garanție 3 ani, rate EasyCredit până la 46 luni. Showroom în Chișinău.",
+    ru: "Массажные кресла Leercon в Кишинёве: модели 4D, Zero Gravity, рельса SL. Бесплатная доставка по Молдове, гарантия 3 года, рассрочка EasyCredit до 46 месяцев. Шоурум в Кишинёве.",
   },
   phone: "+373 69 595 968",
   phoneHref: "tel:+37369595968",
@@ -29,9 +29,19 @@ export const siteConfig = {
   },
   currency: "MDL",
   credit: {
-    maxMonths: 12,
-    minMonths: 3,
-    defaultMonths: 12,
+    provider: "EasyCredit",
+    providerUrl: "https://easycredit.md",
+    minMonths: 6,
+    maxMonths: 46,
+    defaultMonths: 24,
+    steps: [6, 12, 18, 24, 36, 46] as const,
+    // Tarife EasyCredit standard "w.Shop" (Last version)
+    // P = ((r * PV) / (1 - (1 + r)^-n)) + PV * Com%
+    tiers: [
+      { from: 6, to: 24, rate: 0.0325, commission: 0.003 },
+      { from: 25, to: 36, rate: 0.0325, commission: 0.0035 },
+      { from: 37, to: 46, rate: 0.0325, commission: 0.001 },
+    ] as const,
   },
 } as const;
 
