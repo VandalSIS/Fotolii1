@@ -12,11 +12,13 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { getRecommended, products } from "@/lib/products";
 import { getDictionary } from "@/lib/i18n";
 import type { Locale } from "@/lib/site";
+import { getStockMap } from "@/lib/stock";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
   const dict = getDictionary(locale);
   const recommended = getRecommended();
+  const stockMap = await getStockMap();
   const heroProduct = recommended[0] ?? products[0];
 
   const massageSample = products.find((p) => p.category === "massage")!;
@@ -58,7 +60,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
         <AnimatedSection className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {recommended.map((p, i) => (
-            <ProductCard key={p.slug} product={p} locale={locale} dict={dict} priority={i < 2} />
+            <ProductCard
+              key={p.slug}
+              product={p}
+              locale={locale}
+              dict={dict}
+              priority={i < 2}
+              stockState={stockMap[p.slug]}
+            />
           ))}
         </AnimatedSection>
       </section>

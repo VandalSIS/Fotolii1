@@ -9,15 +9,18 @@ import type { Product } from "@/lib/products";
 import { formatPrice, monthlyInstallment } from "@/lib/products";
 import type { Dictionary } from "@/lib/i18n";
 import { siteConfig, type Locale } from "@/lib/site";
+import type { StockState } from "@/lib/stock";
 
 interface Props {
   product: Product;
   locale: Locale;
   dict: Dictionary;
   priority?: boolean;
+  stockState?: StockState;
 }
 
-export function ProductCard({ product, locale, dict, priority = false }: Props) {
+export function ProductCard({ product, locale, dict, priority = false, stockState }: Props) {
+  const state: StockState = stockState ?? (product.available ? "in" : "out");
   return (
     <motion.article
       variants={staggerItem}
@@ -43,7 +46,7 @@ export function ProductCard({ product, locale, dict, priority = false }: Props) 
               ★ {dict.products.recommended}
             </span>
           )}
-          <AvailabilityBadge available={product.available} dict={dict} />
+          <AvailabilityBadge state={state} dict={dict} />
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink-900/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       </Link>

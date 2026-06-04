@@ -5,6 +5,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { products } from "@/lib/products";
 import { getDictionary } from "@/lib/i18n";
 import { siteConfig, type Locale } from "@/lib/site";
+import { getStockMap } from "@/lib/stock";
 
 export async function generateMetadata({
   params,
@@ -53,6 +54,7 @@ export default async function ProductsPage({
 }) {
   const { locale } = await params;
   const dict = getDictionary(locale);
+  const stockMap = await getStockMap();
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -80,7 +82,7 @@ export default async function ProductsPage({
         </p>
       </AnimatedSection>
 
-      <ProductGrid products={products} locale={locale} dict={dict} />
+      <ProductGrid products={products} locale={locale} dict={dict} stockMap={stockMap} />
 
       <Script
         id="ld-itemlist"

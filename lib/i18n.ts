@@ -81,6 +81,7 @@ export const dictionaries = {
       askPrice: "Cere preț",
       available: "În stoc",
       unavailable: "Stoc epuizat",
+      comingSoon: "În curând în stoc",
     },
     product: {
       backToProducts: "Înapoi la produse",
@@ -283,6 +284,7 @@ export const dictionaries = {
       askPrice: "Узнать цену",
       available: "В наличии",
       unavailable: "Нет в наличии",
+      comingSoon: "Скоро в наличии",
     },
     product: {
       backToProducts: "К списку товаров",

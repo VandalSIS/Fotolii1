@@ -21,6 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const allPages = [...staticPages, ...productPages];
 
+  // Notă: /admin este intenționat exclus din sitemap și robots.txt.
+
   return allPages.map(({ path, freq, prio }) => ({
     url: `${base}/${defaultLocale}${path}`,
     lastModified,

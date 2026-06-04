@@ -7,15 +7,17 @@ import { staggerContainer } from "./AnimatedSection";
 import type { Product } from "@/lib/products";
 import type { Dictionary } from "@/lib/i18n";
 import type { Locale } from "@/lib/site";
+import type { StockState } from "@/lib/stock";
 
 interface Props {
   products: Product[];
   locale: Locale;
   dict: Dictionary;
   showFilter?: boolean;
+  stockMap?: Record<string, StockState>;
 }
 
-export function ProductGrid({ products, locale, dict, showFilter = true }: Props) {
+export function ProductGrid({ products, locale, dict, showFilter = true, stockMap }: Props) {
   const [filter, setFilter] = useState<"all" | "massage" | "barber">("all");
 
   const filtered = useMemo(
@@ -69,6 +71,7 @@ export function ProductGrid({ products, locale, dict, showFilter = true }: Props
               locale={locale}
               dict={dict}
               priority={i < 3}
+              stockState={stockMap?.[product.slug]}
             />
           ))}
         </AnimatePresence>

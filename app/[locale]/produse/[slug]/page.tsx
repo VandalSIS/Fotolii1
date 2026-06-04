@@ -12,6 +12,7 @@ import { Reviews } from "@/components/Reviews";
 import { formatPrice, getProduct, getRelatedProducts, products } from "@/lib/products";
 import { getDictionary } from "@/lib/i18n";
 import { siteConfig, locales, type Locale } from "@/lib/site";
+import { getStockMap } from "@/lib/stock";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -90,6 +91,16 @@ export default async function ProductPage({
   if (!product) notFound();
   const dict = getDictionary(locale);
   const related = getRelatedProducts(slug);
+  const stockMap = await getStockMap();
+  const stockState = stockMap[product.slug] ?? "in";
+  const isOrderable = stockState === "in";
+
+  const schemaAvailability =
+    stockState === "in"
+      ? "https://schema.org/InStock"
+      : stockState === "soon"
+      ? "https://schema.org/PreOrder"
+      : "https://schema.org/OutOfStock";
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -105,9 +116,7 @@ export default async function ProductPage({
           "@type": "Offer",
           priceCurrency: siteConfig.currency,
           price: product.price,
-          availability: product.available
-            ? "https://schema.org/InStock"
-            : "https://schema.org/OutOfStock",
+          availability: schemaAvailability,
           url: `${siteConfig.domain}/${locale}/produse/${product.slug}`,
           seller: { "@type": "Organization", name: siteConfig.name },
         }
@@ -141,7 +150,7 @@ export default async function ProductPage({
 
         <AnimatedSection as="div">
           <div className="mb-4 flex flex-wrap items-center gap-2">
-            <AvailabilityBadge available={product.available} dict={dict} size="md" />
+            <AvailabilityBadge state={stockState} dict={dict} size="md" />
             {product.recommended && (
               <span className="inline-block rounded-full bg-brand-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-sm shadow-brand-900/20">
                 ★ {dict.products.recommended}
@@ -177,7 +186,7 @@ export default async function ProductPage({
             <OrderModal
               productName={product.name}
               productPrice={product.price !== null ? formatPrice(product.price, locale) : undefined}
-              disabled={!product.available}
+              disabled={!isOrderable}
               dict={dict}
               buttonClassName="btn-primary"
             />
@@ -238,7 +247,13 @@ export default async function ProductPage({
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((p) => (
-              <ProductCard key={p.slug} product={p} locale={locale} dict={dict} />
+              <ProductCard
+                key={p.slug}
+                product={p}
+                locale={locale}
+                dict={dict}
+                stockState={stockMap[p.slug] ?? "in"}
+              />
             ))}
           </div>
         </section>
