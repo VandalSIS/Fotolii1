@@ -31,13 +31,15 @@ export const siteConfig = {
   credit: {
     provider: "EasyCredit",
     providerUrl: "https://easycredit.md",
-    minMonths: 6,
+    minMonths: 4,
     maxMonths: 46,
     defaultMonths: 24,
-    steps: [6, 12, 18, 24, 36, 46] as const,
+    steps: [4, 6, 12, 18, 24, 36, 46] as const,
+    zeroInterestStep: 4 as const,
     // Tarife EasyCredit standard "w.Shop" (Last version)
     // P = ((r * PV) / (1 - (1 + r)^-n)) + PV * Com%
     tiers: [
+      { from: 4, to: 4, rate: 0, commission: 0 },
       { from: 6, to: 24, rate: 0.0325, commission: 0.003 },
       { from: 25, to: 36, rate: 0.0325, commission: 0.0035 },
       { from: 37, to: 46, rate: 0.0325, commission: 0.001 },

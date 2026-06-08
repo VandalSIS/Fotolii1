@@ -36,9 +36,9 @@ export function monthlyInstallment(price: number | null, months: number): number
   const tier = siteConfig.credit.tiers.find((t) => months >= t.from && months <= t.to);
   if (!tier) return null;
   const { rate: r, commission: com } = tier;
-  const monthlyInterest = (r * price) / (1 - Math.pow(1 + r, -months));
+  const monthlyPayment = r === 0 ? price / months : (r * price) / (1 - Math.pow(1 + r, -months));
   const monthlyCommission = price * com;
-  return Math.round(monthlyInterest + monthlyCommission);
+  return Math.round(monthlyPayment + monthlyCommission);
 }
 
 export function totalToPay(price: number | null, months: number): number | null {
