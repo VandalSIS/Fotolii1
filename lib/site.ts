@@ -33,7 +33,7 @@ export const siteConfig = {
     providerUrl: "https://easycredit.md",
     minMonths: 4,
     maxMonths: 46,
-    defaultMonths: 24,
+    defaultMonths: 4,
     steps: [4, 6, 12, 18, 24, 36, 46] as const,
     zeroInterestStep: 4 as const,
     // Tarife EasyCredit standard "w.Shop" (Last version)

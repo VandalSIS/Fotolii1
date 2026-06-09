@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { formatPrice, monthlyInstallment, totalToPay } from "@/lib/products";
+import { formatPrice, monthlyInstallment } from "@/lib/products";
 import type { Dictionary } from "@/lib/i18n";
 import { siteConfig, type Locale } from "@/lib/site";
 
@@ -17,17 +17,8 @@ const ZERO_STEP = siteConfig.credit.zeroInterestStep;
 export function CreditCalculator({ price, locale, dict }: Props) {
   const [months, setMonths] = useState<number>(siteConfig.credit.defaultMonths);
 
-  const { monthly, total, overpay, isZero } = useMemo(() => {
-    const m = monthlyInstallment(price, months);
-    const t = totalToPay(price, months);
-    const tier = siteConfig.credit.tiers.find((tier) => months >= tier.from && months <= tier.to);
-    return {
-      monthly: m,
-      total: t,
-      overpay: t !== null ? Math.max(0, t - price) : null,
-      isZero: tier ? tier.rate === 0 && tier.commission === 0 : false,
-    };
-  }, [price, months]);
+  const monthly = useMemo(() => monthlyInstallment(price, months), [price, months]);
+  const isZero = months === ZERO_STEP;
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-ink-900/10 bg-gradient-to-br from-cream-100 to-cream-50 p-5">
@@ -111,31 +102,6 @@ export function CreditCalculator({ price, locale, dict }: Props) {
             </span>
           )}
         </div>
-
-        {total !== null && overpay !== null && (
-          <dl
-            className={`mt-4 grid grid-cols-2 gap-3 rounded-xl p-3 text-xs ring-1 ${
-              isZero
-                ? "border border-emerald-200/50 bg-emerald-50/70 ring-emerald-200/60"
-                : "border border-ink-900/10 bg-white/60 ring-ink-900/5"
-            }`}
-          >
-            <div>
-              <dt className="text-[10px] font-medium uppercase tracking-wider text-ink-500">
-                {dict.product.creditTotal}
-              </dt>
-              <dd className="mt-0.5 text-sm font-semibold text-ink-900">{formatPrice(total, locale)}</dd>
-            </div>
-            <div>
-              <dt className="text-[10px] font-medium uppercase tracking-wider text-ink-500">
-                {dict.product.creditOverpay}
-              </dt>
-              <dd className={`mt-0.5 text-sm font-semibold ${isZero ? "text-emerald-700" : "text-ink-900"}`}>
-                {isZero ? dict.product.creditZeroNote : overpay > 0 ? `+ ${formatPrice(overpay, locale)}` : "—"}
-              </dd>
-            </div>
-          </dl>
-        )}
       </motion.div>
 
       <p className="mt-3 text-[11px] leading-relaxed text-ink-500">{dict.product.creditNote}</p>

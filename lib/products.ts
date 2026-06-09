@@ -23,22 +23,16 @@ export interface Product {
 }
 
 /**
- * Calculează rata lunară conform formulei EasyCredit „w.Shop" Standard:
- *   P = ((r × PV) / (1 − (1 + r)^−n)) + PV × Com%
- * unde:
- *   r   = dobândă lunară (din tier)
- *   Com = comision lunar (din tier)
- *   PV  = suma împrumutată (preț produs)
- *   n   = perioada în luni
+ * Calculează rata lunară afișată pe site — split simplu preț ÷ luni.
+ * Detaliile reale ale creditului (dobândă, comision) sunt confirmate de
+ * EasyCredit la solicitare. Pe site afișăm doar suma orientativă pe lună,
+ * fără cost suplimentar, ca să nu sperie clientul.
  */
 export function monthlyInstallment(price: number | null, months: number): number | null {
   if (price === null || months <= 0) return null;
   const tier = siteConfig.credit.tiers.find((t) => months >= t.from && months <= t.to);
   if (!tier) return null;
-  const { rate: r, commission: com } = tier;
-  const monthlyPayment = r === 0 ? price / months : (r * price) / (1 - Math.pow(1 + r, -months));
-  const monthlyCommission = price * com;
-  return Math.round(monthlyPayment + monthlyCommission);
+  return Math.round(price / months);
 }
 
 export function totalToPay(price: number | null, months: number): number | null {
